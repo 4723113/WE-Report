@@ -15,8 +15,73 @@ async def put_todo(todo_id: int, req: TodoItemUpdate_Pydantic):
     return todo
 ## 動作確認結果
 （PUTエンドポイントの動作確認結果を記載）
-PUTエンドポイントが正常に動作している
+・PUTエンドポイントが正常に動作している
+Responses
+Curl
 
-存在しないIDを指定した場合に404エラーが返される
+curl -X 'PUT' \
+  'http://127.0.0.1:8000/todos/1' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "title": "string",
+  "description": "string",
+  "completed": false
+}'
+	
+Response body
+{
+  "id": 1,
+  "title": "string",
+  "description": "string",
+  "completed": false
+}
 
-更新後のTODOアイテムが正しくレスポンスに含まれている
+・存在しないIDを指定した場合に404エラーが返される
+Curl
+
+curl -X 'PUT' \
+  'http://127.0.0.1:8000/todos/10' \
+  -H 'accept: application/json' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "title": "string",
+  "description": "string",
+  "completed": false
+}'
+
+Response body
+
+{
+  "detail": "Object \"TodoItem\" does not exist"
+}
+
+・更新後のTODOアイテムが正しくレスポンスに含まれている
+Curl
+
+curl -X 'GET' \
+  'http://127.0.0.1:8000/todos' \
+  -H 'accept: application/json'
+  	
+Response body
+
+[
+  {
+    "id": 1,
+    "title": "string",
+    "description": "string",
+    "completed": false
+  },
+  {
+    "id": 3,
+    "title": "string",
+    "description": "string",
+    "completed": false
+  },
+  {
+    "id": 4,
+    "title": "string",
+    "description": "string",
+    "completed": false
+  }
+]
