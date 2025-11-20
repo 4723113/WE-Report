@@ -15,3 +15,8 @@ async def put_todo(todo_id: int, req: TodoItemUpdate_Pydantic):
     return todo
 ## 動作確認結果
 （PUTエンドポイントの動作確認結果を記載）
+PUTエンドポイントが正常に動作している
+
+存在しないIDを指定した場合に404エラーが返される
+
+更新後のTODOアイテムが正しくレスポンスに含まれている
